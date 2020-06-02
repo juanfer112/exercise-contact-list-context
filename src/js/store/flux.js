@@ -73,22 +73,14 @@ const getState = ({ getStore, setStore }) => {
 					if (objeto == store.holder) {
 						if (store.name !== store.holder.full_name) {
 							edited["full_name"] = store.name;
-						} else {
-							edited["full_name"] = store.name;
 						}
 						if (store.email !== store.holder.email) {
-							edited["email"] = store.email;
-						} else {
 							edited["email"] = store.email;
 						}
 						if (store.phone !== store.holder.phone) {
 							edited["phone"] = store.phone;
-						} else {
-							edited["phone"] = store.phone;
 						}
 						if (store.address !== store.holder.address) {
-							edited["address"] = store.address;
-						} else {
 							edited["address"] = store.address;
 						}
 						newArrayContacts.push(edited);
