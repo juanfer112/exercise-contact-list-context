@@ -72,7 +72,7 @@ const getState = ({ getStore, setStore }) => {
 				store.contact.map(objeto => {
 					if (objeto == store.holder) {
 						if (store.name !== store.holder.full_name) {
-							edited["full_name"] = store.holder.full_name;
+							edited["full_name"] = store.name;
 						} else {
 							edited["full_name"] = store.name;
 						}
@@ -96,8 +96,7 @@ const getState = ({ getStore, setStore }) => {
 						newArrayContacts.push(objeto);
 					}
 				});
-				setStore({ contact: edited });
-				console.log();
+				setStore({ contact: newArrayContacts });
 			}
 		}
 	};

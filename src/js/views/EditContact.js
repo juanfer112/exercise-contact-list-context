@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 export const EditContact = props => {
 	const { store, actions } = useContext(Context);
-
 	return (
 		<div className="container">
 			<div>
@@ -64,8 +63,8 @@ export const EditContact = props => {
 							type="button"
 							className="btn btn-primary form-control"
 							onClick={() => {
-								actions.putAgenda();
 								actions.checkEdit();
+								actions.putAgenda();
 							}}>
 							save
 						</button>
