@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const AddContact = () => {
-	const { actions } = useContext(Context);
+	const { store, actions } = useContext(Context);
 	var inputName = "";
 	var inputEmail = "";
 	var inputAddress = "";
@@ -57,15 +57,17 @@ export const AddContact = () => {
 							}}
 						/>
 					</div>
-					<button
-						type="button"
-						className="btn btn-primary form-control"
-						onClick={() => {
-							actions.inputTotal(inputName, inputEmail, inputAddress, inputPhone);
-							actions.putAgenda();
-						}}>
-						save
-					</button>
+					<Link className="mt-3 w-100 text-center" to="/">
+						<button
+							type="button"
+							className="btn btn-primary form-control"
+							onClick={() => {
+								actions.addContact(inputName, inputEmail, inputAddress, inputPhone);
+								actions.putAgenda();
+							}}>
+							save
+						</button>
+					</Link>
 					<Link className="mt-3 w-100 text-center" to="/">
 						or get back to contacts
 					</Link>
