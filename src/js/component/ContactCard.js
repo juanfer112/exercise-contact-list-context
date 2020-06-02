@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
-
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const ContactCard = props => {
-	const { store } = useContext(Context);
+	const { store, actions } = useContext(Context);
 	return (
 		<li index={props.index} className="list-group-item">
 			<div className="row w-100">
@@ -15,9 +15,15 @@ export const ContactCard = props => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn">
-							<i className="fas fa-pencil-alt mr-3" />
-						</button>
+						<Link to="/edit">
+							<button
+								className="btn"
+								onClick={() => {
+									return actions.editHolder(props.card), actions.createHolder(props.card);
+								}}>
+								<i className="fas fa-pencil-alt mr-3" />
+							</button>
+						</Link>
 						<button
 							className="btn"
 							onClick={() => {

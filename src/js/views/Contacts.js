@@ -6,10 +6,12 @@ import { Modal } from "../component/Modal";
 import { Context } from "../store/appContext";
 
 export const Contacts = () => {
+	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({
 		showModal: false
 	});
-	const { store, actions } = useContext(Context);
+	var [deleteCard, setDeleteCard] = useState({});
+
 	return (
 		<div className="container">
 			<div>
@@ -26,15 +28,19 @@ export const Contacts = () => {
 									key={index}
 									index={index}
 									card={card}
-									cancelLi={() => actions.deleteContact(card)}
-									onDelete={() => setState({ showModal: true })}
+									onEdit={() => {
+										setDeleteCard(card);
+									}}
+									onDelete={() => {
+										return setDeleteCard(card), setState({ showModal: true });
+									}}
 								/>
 							);
 						})}
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} />
+			<Modal card={deleteCard} show={state.showModal} onClose={() => setState({ showModal: false })} />
 		</div>
 	);
 };

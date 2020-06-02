@@ -1,7 +1,12 @@
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			contact: []
+			contact: [],
+			name: "",
+			email: "",
+			address: "",
+			phone: "",
+			holder: ""
 		},
 		actions: {
 			pullAgenda: async () => {
@@ -38,7 +43,61 @@ const getState = ({ getStore, setStore }) => {
 					}
 				});
 				setStore({ contact: newContactList });
-				console.log(store.contact);
+			},
+			createHolder: card => {
+				setStore({ holder: card });
+			},
+			editHolder: card => {
+				setStore({ name: card.full_name });
+				setStore({ address: card.address });
+				setStore({ phone: card.phone });
+				setStore({ email: card.email });
+			},
+			editName: name => {
+				setStore({ name: name });
+			},
+			editEmail: email => {
+				setStore({ email: email });
+			},
+			editAddress: address => {
+				setStore({ address: address });
+			},
+			editPhone: phone => {
+				setStore({ phone: phone });
+			},
+			checkEdit: () => {
+				const store = getStore();
+				var newArrayContacts = [];
+				var edited = {};
+				store.contact.map(objeto => {
+					if (objeto == store.holder) {
+						if (store.name !== store.holder.full_name) {
+							edited["full_name"] = store.holder.full_name;
+						} else {
+							edited["full_name"] = store.name;
+						}
+						if (store.email !== store.holder.email) {
+							edited["email"] = store.email;
+						} else {
+							edited["email"] = store.email;
+						}
+						if (store.phone !== store.holder.phone) {
+							edited["phone"] = store.phone;
+						} else {
+							edited["phone"] = store.phone;
+						}
+						if (store.address !== store.holder.address) {
+							edited["address"] = store.address;
+						} else {
+							edited["address"] = store.address;
+						}
+						newArrayContacts.push(edited);
+					} else {
+						newArrayContacts.push(objeto);
+					}
+				});
+				setStore({ contact: edited });
+				console.log();
 			}
 		}
 	};
